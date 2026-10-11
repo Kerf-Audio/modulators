@@ -21,22 +21,23 @@ A thank-you to the REAPER community, which has inspired me since 2007.
 ![Kerf Modulators docked in REAPER](docs/images/modulators-dock.webp)
 
 > [!IMPORTANT]
-> **Free public beta, version 0.5.0.** Kerf Modulators has been tested and works
-> on macOS, Windows and Linux, so far on small projects of around 10 tracks and
-> 20 plugins. It hasn't yet been tested thoroughly in edge cases or larger
-> projects, so **expect bugs and back up your projects** before using it.
+> **Free public beta, version 0.5.0. Available now for Linux; macOS and Windows
+> are coming soon.** It has been tested so far on small projects of around 10
+> tracks and 20 plugins, and hasn't yet been tested thoroughly in edge cases or
+> larger projects, so **expect bugs and back up your projects** before using it.
 
 | | |
 | --- | --- |
 | **Version** | 0.5.0 beta |
-| **Platforms** | macOS 11+ (Apple Silicon and Intel), Windows 10 and 11 (x64), Linux (x86_64) |
+| **Available now** | Linux (x86_64, glibc 2.35+) |
+| **Coming soon** | macOS 11+ (Apple Silicon and Intel), Windows 10 and 11 (x64) |
 | **Requires** | REAPER 6 or later, 64-bit, and [ReaPack](https://reapack.com) |
 | **Price** | Free, including for commercial work |
 | **Documentation** | [Install guide (PDF)](docs/kerf-modulators-install-guide.pdf) · [User manual (PDF)](docs/kerf-modulators-manual.pdf) |
 
 ## Install
 
-Install with ReaPack on every platform. On macOS it's the only way to install.
+Install with ReaPack. It installs the right build for your system and keeps it up to date.
 
 1. Install [ReaPack](https://reapack.com) if you don't have it, and restart REAPER.
 2. Choose **Extensions › ReaPack › Import repositories…**, paste this address and click OK:
@@ -48,8 +49,7 @@ Install with ReaPack on every platform. On macOS it's the only way to install.
 4. Restart REAPER.
 5. Open the panel from **Extensions › Kerf Modulators: Show/hide panel**.
 
-ReaPack keeps it up to date. On Windows and Linux you can also install by hand
-from [Releases](../../releases). See [INSTALL.md](INSTALL.md) for that, and for
+You can also install the Linux build by hand from [Releases](../../releases). See [INSTALL.md](INSTALL.md) for that, and for
 upgrading and uninstalling.
 
 ## The panel
