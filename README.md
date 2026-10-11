@@ -1,79 +1,156 @@
+<p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/kerf-audio-horizontal-on-dark.svg">
+    <img src="docs/images/kerf-audio-horizontal-on-light.svg" alt="Kerf Audio" height="36">
+  </picture>
+</p>
+
 # Kerf Modulators
 
-**Free beta.** A dockable, track-aware modulation panel for REAPER.
+**A free, docked modulation panel for REAPER.** Seven modulators and a macro
+panel on every track, driving any plugin parameter on any track.
 
-Each plugin on the selected track gets its own block of modulator slots. Drop in
-an MSEG, LFO or envelope follower, map it to one or more FX parameters, and it
-drives them in real time, even when the panel is hidden.
+REAPER can already modulate a plugin parameter, but only one at a time, through
+a Parameter Modulation window a couple of clicks deep. Kerf Modulators puts it
+all on one panel: pick a track, see every plugin on it, drop a modulator into a
+slot and map it to as many parameters as you like. It stays locked to the beat
+and saves with the project.
 
 A thank-you to the REAPER community, which has inspired me since 2007.
 
-## Status: community beta
+![Kerf Modulators docked in REAPER](docs/images/modulators-dock.webp)
 
-Kerf Modulators has been tested and works on macOS, Windows and Linux. So far
-that testing has been on small projects, around 10 tracks and 20 plugins. It
-hasn't yet been tested thoroughly in edge cases or larger projects, so
-**expect bugs**. That's where you come in: this beta is open so the REAPER
-community can help find them.
+> [!IMPORTANT]
+> **Free public beta, version 0.5.0.** Kerf Modulators has been tested and works
+> on macOS, Windows and Linux, so far on small projects of around 10 tracks and
+> 20 plugins. It hasn't yet been tested thoroughly in edge cases or larger
+> projects, so **expect bugs and back up your projects** before using it.
 
-Runs on:
-- macOS 11+ (Apple Silicon and Intel)
-- Windows 10 and 11 (x64)
-- Linux (x86_64)
-
-Please [report bugs](../../issues/new/choose) and ask questions in
-[Discussions](../../discussions). Even a short report helps: what you did, what
-happened, and your system. Support is through GitHub only. I read every report
-and fix what I can, as time allows, but there's no guaranteed timescale.
-
-**Back up your projects before using it.**
-
-## Modulators
-
-- **MSEG**: a multi-stage envelope you draw yourself, looped or one-shot, free or synced
-- **Envelope Follower**: turns any track's level into modulation, for ducking and sidechain on any parameter
-- **LFO**: six shapes (sine, triangle, saw, square, random, Perlin), free or tempo-synced, with jitter
-- **Steps**: up to 16 held values on a beat division, with randomise
-- **Macros**: four nameable knobs on every track, and the hub every other modulator can drive
-- **ADSR**: a four-stage envelope triggered by the transport, a cycle or each media item
-- **XY Pad**: two outputs in one control, with a chaos wander, free or beat-locked
-- **Waves**: a curve library with real curve operations, saved shapes and undo
-
-## Features
-
-- Native REAPER docker: dock, float, and remember position
-- Follows the selected track, with one block per plugin and up to 12 slots each
-- Up to 128 targets per modulator, each with its own range and polarity
-- Cross-track modulation, including other tracks' macros
-- Chaining through macros, with no feedback loops
-- Quick knobs per plugin, with templates every new instance picks up
-- Native REAPER modulation for the LFO and follower where possible, sample accurate
-- Timing compensation so beat-locked modulation lands on the grid
-- Keeps running when the panel is hidden or another track is selected
-- Everything saved in the project
-- Four accent themes in light or dark
-- Built-in diagnostics for tracking down stutters
-
-## Roadmap: testing first
-
-This first release phase is for testing and bug fixing. No new features will be
-added until version 1.0 is out and stable. Feature requests are welcome in
-[Discussions](../../discussions) or as an Issue, and they will be looked at
-after 1.0.
+| | |
+| --- | --- |
+| **Version** | 0.5.0 beta |
+| **Platforms** | macOS 11+ (Apple Silicon and Intel), Windows 10 and 11 (x64), Linux (x86_64) |
+| **Requires** | REAPER 6 or later, 64-bit, and [ReaPack](https://reapack.com) |
+| **Price** | Free, including for commercial work |
+| **Documentation** | [Install guide (PDF)](docs/kerf-modulators-install-guide.pdf) · [User manual (PDF)](docs/kerf-modulators-manual.pdf) |
 
 ## Install
 
-Install with ReaPack. See [INSTALL.md](INSTALL.md) or the [install guide (PDF)](docs/kerf-modulators-install-guide.pdf).
+Install with ReaPack on every platform. On macOS it's the only way to install.
 
-## Documentation
+1. Install [ReaPack](https://reapack.com) if you don't have it, and restart REAPER.
+2. Choose **Extensions › ReaPack › Import repositories…**, paste this address and click OK:
+   ```
+   https://raw.githubusercontent.com/Kerf-Audio/reapack/main/index.xml
+   ```
+3. Choose **Extensions › ReaPack › Browse packages**, search for **Kerf Modulators**,
+   right-click it, choose **Install**, then click **Apply**.
+4. Restart REAPER.
+5. Open the panel from **Extensions › Kerf Modulators: Show/hide panel**.
 
-- [Install guide (PDF)](docs/kerf-modulators-install-guide.pdf)
-- [User manual (PDF)](docs/kerf-modulators-manual.pdf)
+ReaPack keeps it up to date. On Windows and Linux you can also install by hand
+from [Releases](../../releases). See [INSTALL.md](INSTALL.md) for that, and for
+upgrading and uninstalling.
+
+## The panel
+
+The panel follows the selected track. The track's macros sit on the left, then
+one block per plugin, each with up to 12 modulator slots. Any slot can drive up
+to 128 parameters, on its own track or any other.
+
+![The Kerf Modulators panel](docs/images/modulators-panel.webp)
+
+## Modulators
+
+### MSEG
+A multi-stage envelope you draw yourself. Looped or one-shot, free or locked to
+the grid, with per-segment curve shapes, delay, depth, a loop section and jitter.
+
+<img src="docs/images/mseg.webp" alt="MSEG" width="480">
+
+### Envelope Follower
+Turns the level of any track into modulation. Point it at a kick to duck a pad,
+or at a vocal to open a filter. Invert the range for sidechain ducking on any
+parameter.
+
+<img src="docs/images/follower.webp" alt="Envelope Follower" width="480">
+
+### LFO
+Six shapes (sine, triangle, saw, square, random and Perlin), free running or
+tempo-synced, with phase and jitter. Runs on REAPER's own engine where it can,
+so it's sample accurate.
+
+<img src="docs/images/lfo.webp" alt="LFO" width="480">
+
+### Steps
+A step sequencer for parameters: up to 16 held values on a beat division you
+choose, with one-click randomise.
+
+<img src="docs/images/steps.webp" alt="Steps" width="480">
+
+### Macros
+Four nameable knobs on every track, there from the moment the track exists, and
+the hub every other modulator can drive. Map a modulator to a macro and
+everything the macro drives follows.
+
+<img src="docs/images/macros.webp" alt="Macros" width="480">
+
+### ADSR
+A four-stage envelope triggered by the transport, by a cycle of N beats, or by
+the start of each media item on the track.
+
+### XY Pad
+Two outputs in one control. Set a position and let it wander, freely or in
+beat-locked jumps that play back the same every time.
+
+<img src="docs/images/xy.webp" alt="XY Pad" width="360">
+
+### Waves
+A curve library that always retriggers, with real curve operations (invert,
+reverse, normalise, smooth, quantise, double, halve), sixteen levels of undo,
+and your own saved shapes.
+
+## Features
+
+- Native REAPER docker: dock it, float it, and REAPER remembers where
+- Follows the selected track, with one block per plugin and up to 12 slots each
+- Up to 128 targets per modulator, each with its own range and polarity
+- Cross-track modulation, including other tracks' macros, surviving reorders and renames
+- Chaining through macros, with no feedback loops possible
+- Quick knobs: two to eight hand knobs per plugin, with templates every new instance picks up
+- Native REAPER modulation for the LFO and follower where possible, sample accurate
+- Timing compensation, so beat-locked modulation lands on the grid
+- Keeps running when the panel is hidden or another track is selected
+- Everything saved in the project
+- Four accent themes, in light or dark
+- Built-in diagnostics for tracking down stutters
+
+The [user manual](docs/kerf-modulators-manual.pdf) covers every control.
+
+## Support and bugs
+
+- **Bugs:** [open an issue](../../issues/new/choose). The form asks for your
+  system, REAPER version and project size. A small `.RPP` that shows the problem
+  helps most.
+- **Questions:** ask in [Discussions](../../discussions).
+- Support is through GitHub only. I read every report and fix what I can, as
+  time allows, but there's no guaranteed timescale.
+
+## Roadmap: testing first
+
+This first release phase is for testing and bug fixing. **No new features will
+be added until version 1.0 is out and stable.** Feature requests are welcome in
+[Discussions](../../discussions) or as an issue, and they'll be looked at after
+1.0.
 
 ## Licence
 
 Kerf Modulators is free to use, including for commercial work, under the
-[Kerf Audio Freeware Licence](LICENSE.txt). It is not open source.
-Third-party components are listed in [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt).
+[Kerf Audio Freeware Licence](LICENSE.txt). It is not open source, and it may not
+be sold or redistributed; please link here instead. Third-party components are
+listed in [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt).
+
+REAPER is a trademark of Cockos Incorporated. Kerf Audio is not affiliated with
+or endorsed by Cockos.
 
 Danny Wincott, trading as Kerf Audio
